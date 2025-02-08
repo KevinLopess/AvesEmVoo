@@ -1,5 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bkro5mlbcbaer"]
+[gd_scene load_steps=15 format=3 uid="uid://bkro5mlbcbaer"]
 
+[ext_resource type="PackedScene" uid="uid://dek53b0fgm4ac" path="res://bird.tscn" id="1_eowyg"]
+[ext_resource type="Script" path="res://main.gd" id="1_g2jgb"]
+[ext_resource type="Script" path="res://parallax_background.gd" id="1_rpms6"]
 [ext_resource type="Texture2D" uid="uid://bsb8mjs7v5nkd" path="res://parallax/layer_08_1920 x 1080.png" id="1_slq7s"]
 [ext_resource type="Texture2D" uid="uid://cyay28d2yhc7g" path="res://parallax/layer_07_1920 x 1080.png" id="2_icuvh"]
 [ext_resource type="Texture2D" uid="uid://pvbg4re5xaok" path="res://parallax/layer_06_1920 x 1080.png" id="3_gy6qq"]
@@ -8,56 +11,107 @@
 [ext_resource type="Texture2D" uid="uid://cegtvnt10wlu8" path="res://parallax/layer_03_1920 x 1080.png" id="6_j6h1j"]
 [ext_resource type="Texture2D" uid="uid://c6eyg2kxnsla2" path="res://parallax/layer_02_1920 x 1080.png" id="7_ng2fs"]
 [ext_resource type="Texture2D" uid="uid://b2v36o1nwyahr" path="res://parallax/layer_01_1920 x 1080.png" id="8_avkli"]
+[ext_resource type="Theme" uid="uid://vu1qtgkbtga3" path="res://DefaultThemeButton.tres" id="12_fg6vo"]
+
+[sub_resource type="FontVariation" id="FontVariation_h0jb2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kvjxv"]
+font = SubResource("FontVariation_h0jb2")
+font_size = 45
+font_color = Color(0.927407, 0.870929, 1.15514e-06, 1)
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(960, 538)
+script = ExtResource("1_g2jgb")
+
+[node name="Bird" parent="." instance=ExtResource("1_eowyg")]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+script = ExtResource("1_rpms6")
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2(960, 538)
+motion_scale = Vector2(0.4, 0.4)
+motion_mirroring = Vector2(1920, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+[node name="Layer081920X1080" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(961, 542)
 texture = ExtResource("1_slq7s")
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2(960, 538)
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(1920, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+[node name="Layer071920X1080" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2(-1.00006, 5)
+scale = Vector2(1992, 1074)
 texture = ExtResource("2_icuvh")
+region_rect = Rect2(1129.88, 0, 790.125, 1080)
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2(960, 538)
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(1920, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+[node name="Layer061920X1080" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+position = Vector2(958, 540)
 texture = ExtResource("3_gy6qq")
 
 [node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2(960, 538)
+motion_scale = Vector2(0.6, 0.6)
+motion_mirroring = Vector2(1920, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4"]
+[node name="Layer051920X1080" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4"]
+position = Vector2(958, 540)
 texture = ExtResource("4_6t4gv")
 
 [node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
 position = Vector2(960, 538)
+motion_scale = Vector2(0.7, 0.7)
+motion_mirroring = Vector2(1920, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer5"]
+[node name="Layer041920X1080" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer5"]
+position = Vector2(1, 5)
 texture = ExtResource("5_lirjr")
 
 [node name="ParallaxLayer6" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2(960, 538)
+motion_scale = Vector2(0.8, 0.8)
+motion_mirroring = Vector2(1920, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer6"]
+[node name="Layer031920X1080" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer6"]
+position = Vector2(963, 543)
 texture = ExtResource("6_j6h1j")
 
 [node name="ParallaxLayer7" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2(960, 538)
+motion_scale = Vector2(0.9, 0.9)
+motion_mirroring = Vector2(1920, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer7"]
+[node name="Layer021920X1080" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer7"]
+position = Vector2(962, 539)
 texture = ExtResource("7_ng2fs")
 
 [node name="ParallaxLayer8" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2(960, 538)
+motion_mirroring = Vector2(1920, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer8"]
+[node name="Layer011920X1080" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer8"]
+position = Vector2(964, 546)
 texture = ExtResource("8_avkli")
+
+[node name="StartButton" type="Button" parent="."]
+offset_left = -205.0
+offset_top = 56.0
+offset_right = 206.0
+offset_bottom = 186.0
+theme = ExtResource("12_fg6vo")
+autowrap_mode = 2
+
+[node name="Label" type="Label" parent="StartButton"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 8.0
+offset_right = 395.0
+offset_bottom = 119.0
+text = "Start"
+label_settings = SubResource("LabelSettings_kvjxv")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]

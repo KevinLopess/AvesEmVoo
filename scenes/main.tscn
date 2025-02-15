@@ -1,0 +1,105 @@
+[gd_scene load_steps=11 format=3 uid="uid://bkro5mlbcbaer"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_qf1jc"]
+[ext_resource type="PackedScene" uid="uid://dek53b0fgm4ac" path="res://scenes/bird.tscn" id="2_qyop8"]
+[ext_resource type="Script" path="res://scripts/parallax_background.gd" id="3_aa5bw"]
+[ext_resource type="Texture2D" uid="uid://bsb8mjs7v5nkd" path="res://images/Background/8-Sky.png" id="4_su1q0"]
+[ext_resource type="Texture2D" uid="uid://pvbg4re5xaok" path="res://images/Background/6-LightGrayBuilds.png" id="5_5ri3j"]
+[ext_resource type="Texture2D" uid="uid://depe18wf5p76d" path="res://images/Background/5-LightGrayBuilds.png" id="6_7i46v"]
+[ext_resource type="Texture2D" uid="uid://dyp0wumoovaq0" path="res://images/Background/4-LightGrayBuilds.png" id="7_p7ysk"]
+[ext_resource type="Texture2D" uid="uid://cegtvnt10wlu8" path="res://images/Background/3-WhiteBuilds.png" id="8_ula5s"]
+[ext_resource type="Texture2D" uid="uid://c6eyg2kxnsla2" path="res://images/Background/2-Trees.png" id="9_dihuh"]
+[ext_resource type="Texture2D" uid="uid://b2v36o1nwyahr" path="res://images/Background/1-Floor.png" id="10_obw8h"]
+
+[node name="AvesEmVoo" type="Node2D"]
+position = Vector2(960, 538)
+script = ExtResource("1_qf1jc")
+
+[node name="Bird" parent="." instance=ExtResource("2_qyop8")]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+script = ExtResource("3_aa5bw")
+
+[node name="SkyLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.4, 0.4)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Layer081920X1080" type="Sprite2D" parent="ParallaxBackground/SkyLayer"]
+position = Vector2(961, 542)
+texture = ExtResource("4_su1q0")
+
+[node name="LightGrayBackLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Layer061920X1080" type="Sprite2D" parent="ParallaxBackground/LightGrayBackLayer"]
+position = Vector2(958, 540)
+texture = ExtResource("5_5ri3j")
+
+[node name="DarkGrayBuildLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.6, 0.6)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Layer051920X1080" type="Sprite2D" parent="ParallaxBackground/DarkGrayBuildLayer"]
+position = Vector2(958, 540)
+texture = ExtResource("6_7i46v")
+
+[node name="LightGrayFrontBuildLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(960, 538)
+motion_scale = Vector2(0.7, 0.7)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Layer041920X1080" type="Sprite2D" parent="ParallaxBackground/LightGrayFrontBuildLayer"]
+position = Vector2(1, 5)
+texture = ExtResource("7_p7ysk")
+
+[node name="ColoredBuildsLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.8, 0.8)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Layer031920X1080" type="Sprite2D" parent="ParallaxBackground/ColoredBuildsLayer"]
+position = Vector2(963, 543)
+texture = ExtResource("8_ula5s")
+
+[node name="TreesLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.9, 0.9)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Layer021920X1080" type="Sprite2D" parent="ParallaxBackground/TreesLayer"]
+position = Vector2(962, 539)
+texture = ExtResource("9_dihuh")
+
+[node name="FloorLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Layer011920X1080" type="Sprite2D" parent="ParallaxBackground/FloorLayer"]
+position = Vector2(964, 546)
+texture = ExtResource("10_obw8h")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = -849.0
+offset_top = -451.0
+offset_right = -779.0
+offset_bottom = -350.0
+scale = Vector2(4.04008, 3.86787)
+
+[node name="RestartButton" type="Button" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "Restart"
+
+[node name="StartButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Start"
+
+[node name="RecordsButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Records"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Exit"
+
+[connection signal="pressed" from="VBoxContainer/RestartButton" to="Bird" method="_on_restart_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/StartButton" to="Bird" method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="Bird" method="_on_quit_button_pressed"]

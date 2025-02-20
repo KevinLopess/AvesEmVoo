@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bkro5mlbcbaer"]
+[gd_scene load_steps=14 format=3 uid="uid://bkro5mlbcbaer"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_qf1jc"]
 [ext_resource type="PackedScene" uid="uid://dek53b0fgm4ac" path="res://scenes/bird.tscn" id="2_qyop8"]
@@ -9,13 +9,14 @@
 [ext_resource type="Texture2D" uid="uid://dyp0wumoovaq0" path="res://images/Background/4-LightGrayBuilds.png" id="7_p7ysk"]
 [ext_resource type="Texture2D" uid="uid://cegtvnt10wlu8" path="res://images/Background/3-WhiteBuilds.png" id="8_ula5s"]
 [ext_resource type="Texture2D" uid="uid://c6eyg2kxnsla2" path="res://images/Background/2-Trees.png" id="9_dihuh"]
+[ext_resource type="FontFile" uid="uid://bwuaf6k2s771h" path="res://images/fonts/FlappyBird.ttf" id="10_2fuep"]
 [ext_resource type="Texture2D" uid="uid://b2v36o1nwyahr" path="res://images/Background/1-Floor.png" id="10_obw8h"]
+[ext_resource type="Script" path="res://scripts/score_counter.gd" id="10_slu7q"]
+[ext_resource type="PackedScene" uid="uid://bcqf7hgpb3n8s" path="res://scenes/tree_spawner.tscn" id="11_3hcxb"]
 
 [node name="AvesEmVoo" type="Node2D"]
 position = Vector2(960, 538)
 script = ExtResource("1_qf1jc")
-
-[node name="Bird" parent="." instance=ExtResource("2_qyop8")]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 script = ExtResource("3_aa5bw")
@@ -76,6 +77,27 @@ motion_mirroring = Vector2(1920, 0)
 position = Vector2(964, 546)
 texture = ExtResource("10_obw8h")
 
+[node name="TreeSpawner" parent="." instance=ExtResource("11_3hcxb")]
+
+[node name="ScoreCounter" type="MarginContainer" parent="."]
+offset_left = -31.0
+offset_top = -445.0
+offset_right = 31.0
+offset_bottom = -303.0
+script = ExtResource("10_slu7q")
+
+[node name="Label" type="Label" parent="ScoreCounter"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("10_2fuep")
+theme_override_font_sizes/font_size = 180
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 offset_left = -849.0
 offset_top = -451.0
@@ -93,12 +115,16 @@ layout_mode = 2
 text = "Start"
 
 [node name="RecordsButton" type="Button" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "Records"
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Exit"
+
+[node name="Bird" parent="." instance=ExtResource("2_qyop8")]
+scale = Vector2(0.657421, 0.608647)
 
 [connection signal="pressed" from="VBoxContainer/RestartButton" to="Bird" method="_on_restart_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/StartButton" to="Bird" method="_on_start_button_pressed"]

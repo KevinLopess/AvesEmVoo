@@ -1,0 +1,68 @@
+[gd_scene load_steps=6 format=3 uid="uid://dpnchsfg7vpic"]
+
+[ext_resource type="Script" path="res://scripts/tree_complete.gd" id="1_oehiq"]
+[ext_resource type="Texture2D" uid="uid://dd6pyp44y2ru0" path="res://images/Tree/clipart845709.png" id="2_443j7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l26ot"]
+size = Vector2(100.109, 1665.72)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wo5p7"]
+size = Vector2(131.187, 1211.9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vq258"]
+size = Vector2(129, 534.75)
+
+[node name="Tree_Complete" type="Node2D"]
+position = Vector2(-5, 195)
+scale = Vector2(0.609815, 0.70704)
+script = ExtResource("1_oehiq")
+
+[node name="TopTree" type="Area2D" parent="."]
+position = Vector2(0, -274.383)
+scale = Vector2(1.00077, 0.860954)
+
+[node name="Sprite2D" type="Sprite2D" parent="TopTree"]
+position = Vector2(-24.5785, -864.021)
+rotation = -3.14159
+scale = Vector2(0.751335, 2.8011)
+texture = ExtResource("2_443j7")
+region_enabled = true
+region_rect = Rect2(0, 0, 253.817, 715.413)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopTree"]
+position = Vector2(-4.9158, -827.956)
+scale = Vector2(1.4755, 1.13167)
+shape = SubResource("RectangleShape2D_l26ot")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="TopTree"]
+position = Vector2(-904.495, -2409.94)
+rotation = -1.14375
+scale = Vector2(2.1771, 1.28068)
+shape = SubResource("RectangleShape2D_l26ot")
+
+[node name="BottomTree" type="Area2D" parent="."]
+position = Vector2(0, 524.723)
+scale = Vector2(1.0327, 0.998123)
+
+[node name="Sprite2D" type="Sprite2D" parent="BottomTree"]
+position = Vector2(33.3463, 169.332)
+scale = Vector2(0.751335, 1.56366)
+texture = ExtResource("2_443j7")
+region_enabled = true
+region_rect = Rect2(0, 0, 253.817, 715.413)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomTree"]
+position = Vector2(4.76385, 175)
+scale = Vector2(1.07834, 0.922535)
+shape = SubResource("RectangleShape2D_wo5p7")
+
+[node name="IncreaseScore" type="Area2D" parent="."]
+scale = Vector2(0.407369, 1.37487)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="IncreaseScore"]
+position = Vector2(281.781, 34.9763)
+shape = SubResource("RectangleShape2D_vq258")
+
+[connection signal="body_entered" from="TopTree" to="." method="_on_body_entered"]
+[connection signal="body_entered" from="BottomTree" to="." method="_on_body_entered"]
+[connection signal="body_entered" from="IncreaseScore" to="." method="_scored_point"]
